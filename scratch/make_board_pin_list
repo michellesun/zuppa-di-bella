@@ -1,0 +1,15 @@
+from bs4 import BeautifulSoup
+import requests
+from collections import Counter
+
+board_pin_list = [u'http://pinterest.com/michellelsun/fitness/', u'http://pinterest.com/michellelsun/beauty/', u'http://pinterest.com/michellelsun/beauty/?page=2', u'http://pinterest.com/michellelsun/beauty/?page=3', u'http://pinterest.com/michellelsun/home-sweet-home/', u'http://pinterest.com/michellelsun/home-sweet-home/?page=2', u'http://pinterest.com/michellelsun/words/', u'http://pinterest.com/michellelsun/words/?page=2', u'http://pinterest.com/michellelsun/sweetness/', u'http://pinterest.com/michellelsun/wanderlust/', u'http://pinterest.com/michellelsun/fooodism/', u'http://pinterest.com/michellelsun/infographics/', u'http://pinterest.com/michellelsun/items/', u'http://pinterest.com/michellelsun/nature/', u'http://pinterest.com/michellelsun/love-in-the-bay/', u'http://pinterest.com/michellelsun/web-design/', u'http://pinterest.com/michellelsun/demo-videos/']
+
+for url in url_list:
+	try:
+		new_pinb = requests.get(url)
+		pinsoup = BeautifulSoup(new_pinb.content)
+		pin_source = get_pin_source(pinsoup)
+		board_pin_list.extend(pin_source)
+	except url == None or pin_source == None or board_pin_list == None:
+		pass
+print board_pin_list

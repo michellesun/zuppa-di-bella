@@ -1,0 +1,61 @@
+Questions
+- why is books url empty
+
+- how to return a list of objects (call the class in main or sub function)?
+
+- TypeError for beautifulsoup.py 
+$ python beautifulsoup.py
+Traceback (most recent call last):
+  File "beautifulsoup.py", line 136, in <module>
+    etsy = Pin("http://www.etsy.com/listing/102135880/rainbow-summer-chevron-stripes-pride")
+  File "beautifulsoup.py", line 131, in __init__
+    self.title= etsy_item_title(link)
+  File "beautifulsoup.py", line 110, in etsy_item_title
+    item_title = etsy_soup.find("div", {"id": "item-title"})
+TypeError: slice indices must be integers or None or have an __index__ method
+
+
+
+July 26
+- Tasks: 
+1) finish page analyzer: 
+-- get all pins by inserting name/board
+-- make a tally of top pin sources
+2) handle top 5 sources
+3) feed top 20 usernames / followers -> generate shopping cart by categories
+
+
+
+
+July 25
+- Tasks:
+1) insert username and get all boards
+2) insert boards and get all pins
+3) generate top pin sources
+
+4) handle top 5 sources
+5) feed top 20 usernames / followers -> generate shopping cart by categories
+
+
+Done questions
+- how to convert from unicode to string
+- how to add a list to a list ==> .extend
+- how to bypass the nonetype error == >  
+		# try:
+		# 	master_pin_source.extend(board_pin_list)
+		# except TypeError:
+		# 	pass
+
+
+
+why convert to unicode ?
+You can convert a NavigableString to a Unicode string with unicode():
+
+
+** navigablestring
+since a string can’t contain anything (the way a tag may contain a string or another tag), strings don’t support the .contents or .string attributes, or the find() method.
+
+
+why is len( soup.content ) = 4??
+
+
