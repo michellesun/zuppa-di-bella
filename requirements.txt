@@ -1,0 +1,8 @@
+Flask==0.9
+Jinja2==2.6
+Werkzeug==0.8.3
+beautifulsoup4==4.1.1
+lxml==2.3.5
+pymongo==2.2.1
+requests==0.13.3
+wsgiref==0.1.2
