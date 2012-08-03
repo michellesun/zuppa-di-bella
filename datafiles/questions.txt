@@ -6,6 +6,8 @@ Aug 3
 - what's needed/scratch
 - front end stuff 
 
+
+
 Questions:
 - Why doesn't printclust work?
 - Can we walk through printclust and drawnode self calling functions?
@@ -96,7 +98,6 @@ July 25
 1) insert username and get all boards
 2) insert boards and get all pins
 3) generate top pin sources
-
 4) handle top 5 sources
 5) feed top 20 usernames / followers -> generate shopping cart by categories
 
@@ -123,9 +124,13 @@ Traceback (most recent call last):
     item_title = etsy_soup.find("div", {"id": "item-title"})
 TypeError: slice indices must be integers or None or have an __index__ method
 
+- Create requirements.txt by command "pip freeze"
+- To install things from requirements.txt
+-- pip install -r requirements.txt
 
+- PIL is broken in Mac. pillow is the correct version
 
-
+- to direct 
 
 why convert to unicode ?
 You can convert a NavigableString to a Unicode string with unicode():
