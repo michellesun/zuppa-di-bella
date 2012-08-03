@@ -1,0 +1,4 @@
+lxml
+flask
+pymongo==2.2.1
+

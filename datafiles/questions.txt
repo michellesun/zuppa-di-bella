@@ -1,0 +1,140 @@
+Aug 3 
+- Tasks
+1) Get the rows happen!
+2) Make a rest of what to do list
+- arrange and clean up beautifulsoup repo
+- what's needed/scratch
+- front end stuff 
+
+Questions:
+- Why doesn't printclust work?
+- Can we walk through printclust and drawnode self calling functions?
+- PIL is broken.. how to fix?
+
+Aug 2
+- Tasks
+1) Implement hcluster
+
+Question
+What is the blognames,words,data look like
+How to access mongo database
+#mongo ds035617.mongolab.com:35617/pinterest -u pinterestalgo -p pinterest2012
+
+Aug 1
+- Tasks
+1) Import top 50 users
+2) Implement Ch 3 clustering 
+
+
+How to separate the load_db.py and find_pin.py
+What is v1 and v2, list of ...?
+
+July 30
+- Tasks
+1) Finish collective intelligence ch3
+2) Do pymongo database and populate with top 50 users
+
+July 31/Aug1
+1) Implement Ch3 on pymongo
+
+
+ERROR
+$ mongod
+mongod --help for help and startup options
+Mon Jul 30 11:16:15 [initandlisten] MongoDB starting : pid=11642 port=27017 dbpath=/data/db/ 64-bit host=sun-michelles-macbook-pro.local
+Mon Jul 30 11:16:15 [initandlisten] db version v2.0.6, pdfile version 4.5
+Mon Jul 30 11:16:15 [initandlisten] git version: e1c0cbc25863f6356aa4e31375add7bb49fb05bc
+Mon Jul 30 11:16:15 [initandlisten] build info: Darwin erh2.10gen.cc 9.8.0 Darwin Kernel Version 9.8.0: Wed Jul 15 16:55:01 PDT 2009; root:xnu-1228.15.4~1/RELEASE_I386 i386 BOOST_LIB_VERSION=1_40
+Mon Jul 30 11:16:15 [initandlisten] options: {}
+Mon Jul 30 11:16:15 [initandlisten] exception in initAndListen: 10296 dbpath (/data/db/) does not exist, terminating
+Mon Jul 30 11:16:15 dbexit: 
+Mon Jul 30 11:16:15 [initandlisten] shutdown: going to close listening sockets...
+Mon Jul 30 11:16:15 [initandlisten] shutdown: going to flush diaglog...
+Mon Jul 30 11:16:15 [initandlisten] shutdown: going to close sockets...
+Mon Jul 30 11:16:15 [initandlisten] shutdown: waiting for fs preallocator...
+Mon Jul 30 11:16:15 [initandlisten] shutdown: lock for final commit...
+Mon Jul 30 11:16:15 [initandlisten] shutdown: final commit...
+Mon Jul 30 11:16:15 [initandlisten] shutdown: closing all files...
+Mon Jul 30 11:16:15 [initandlisten] closeAllFiles() finished
+Mon Jul 30 11:16:15 dbexit: really exiting now 
+
+Questions
+
+- how to create requirements file
+
+July 27
+- Tasks:
+1) Populate database
+- columns: username / category of pinboard / boardname / pin source / rating count / total pins in category, in board / 
+2) Predict brand by feeding a username
+
+
+- Previously chat 
+1) make etsy objects appear on webpage
+2) make amzn soup
+
+
+ok so your next programming task
+is to input two sources
+and find out how many times those two sources have been pinned by the same person
+maybe also count multiple pins by the same person
+
+
+July 26
+- Tasks: 
+1) finish page analyzer: 
+-- get all pins by inserting name/board
+-- make a tally of top pin sources
+2) handle top 5 sources
+3) feed top 20 usernames / followers -> generate shopping cart by categories
+
+
+
+
+July 25
+- Tasks:
+1) insert username and get all boards
+2) insert boards and get all pins
+3) generate top pin sources
+
+4) handle top 5 sources
+5) feed top 20 usernames / followers -> generate shopping cart by categories
+
+
+Done questions
+- how to convert from unicode to string
+- how to add a list to a list ==> .extend
+- how to bypass the nonetype error == >  
+		# try:
+		# 	master_pin_source.extend(board_pin_list)
+		# except TypeError:
+		# 	pass
+- why is books url empty
+- how to return a list of objects (call the class in main or sub function)?
+
+- TypeError for beautifulsoup.py 
+$ python beautifulsoup.py
+Traceback (most recent call last):
+  File "beautifulsoup.py", line 136, in <module>
+    etsy = Pin("http://www.etsy.com/listing/102135880/rainbow-summer-chevron-stripes-pride")
+  File "beautifulsoup.py", line 131, in __init__
+    self.title= etsy_item_title(link)
+  File "beautifulsoup.py", line 110, in etsy_item_title
+    item_title = etsy_soup.find("div", {"id": "item-title"})
+TypeError: slice indices must be integers or None or have an __index__ method
+
+
+
+
+
+why convert to unicode ?
+You can convert a NavigableString to a Unicode string with unicode():
+
+
+** navigablestring
+since a string can’t contain anything (the way a tag may contain a string or another tag), strings don’t support the .contents or .string attributes, or the find() method.
+
+
+why is len( soup.content ) = 4??
+
+

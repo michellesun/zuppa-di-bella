@@ -1,0 +1,15 @@
+{% extends "head.html" %}
+
+{% block content %}
+
+<div class="main">
+	<div id="city_select">
+		<h1> Enter your pinterest username </h1>
+		<form action="{{url_for("pin")}}">
+			<input type="text" name="username" />
+			<input type="Submit" value="Go" class="button">	
+		</form>
+	</div>
+</div>
+
+{% endblock %}

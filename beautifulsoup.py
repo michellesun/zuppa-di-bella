@@ -1,17 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
 import traceback
-def main():
-	# pin = Pin("http://www.etsy.com/listing/102135880/rainbow-summer-chevron-stripes-pride")
-	# [ pin, pin1, pin2 ]
-	# print pin.title
-	# print pin.image_link
 
+def main():
 	soup = get_soup("http://pinterest.com/ohjoy/oh-baby/")
 	noimage = get_image(soup)
 	link_list = get_link_list(noimage) # not sure where this fits
-	etsy_soup = get_soup("http://www.etsy.com/listing/102135880/rainbow-summer-chevron-stripes-pride")
-	etsy_links = get_etsy(etsy_soup)
+	for link in link_list:
+		etsy_soup = get_soup(link)
+		etsy_links = get_etsy(etsy_soup)
 	etsy_pinobjects = []
 	for link in etsy_links:
 		print link
@@ -20,9 +17,25 @@ def main():
 			etsy_pinobjects.append(etsy_pin)
 		except Exception, e:
 			traceback.print_exc()
+	# return etsy_pinobjects
+	pin = Pin("http://www.etsy.com/listing/102135880/rainbow-summer-chevron-stripes-pride")
+	return pin.title, pin.image_link, pin.pdt_link, pin.price
 
-		
-	print etsy_pinobjects
+	""" pinobj 
+		[<__main__.Pin object at 0x10ac10450>, <__main__.Pin object at 0x10ac99550>,
+		<__main__.Pin object at 0x10ad247d0>, <__main__.Pin object at 0x10adafa50>,
+		<__main__.Pin object at 0x10ae3fb50>, <__main__.Pin object at 0x10ae77e10>,
+		<__main__.Pin object at 0x10aed6150>, <__main__.Pin object at 0x10af5e790>,
+		<__main__.Pin object at 0x10ae3f910>, <__main__.Pin object at 0x10ad8e050>]
+	"""
+	# amzn_soup = get_soup("http://www.amazon.com/dp/0307888908/?ref=cm_sw_r_pi_dp_hvbUpb011QNH7")
+	# amzn_links = get_amzn(amzn_soup)
+
+	# pin = Pin("http://www.etsy.com/listing/102135880/rainbow-summer-chevron-stripes-pride")
+	# [ pin, pin1, pin2 ]
+	# print pin.title
+	# print pin.image_link
+
 
 def find_pin_source(username, boardname):
 ### find the popular sources by injecting boardname
@@ -133,6 +146,32 @@ def etsy_img_link(etsy_soup):
 
 	"""
 ### make individual objects with pdt name, pdt link, img link, price
+
+def get_amzn(soup):
+	amzn_only = soup.select('a[href*="amazon.com/"]')
+	print "amazon only", amzn_only
+	"""amzn_only
+		# return a list of <a href> 
+		### etsy_only =
+		#[ <a href="http://www.etsy.com/shop/thiefandbanditkids" rel="nofollow" target="_blank">thiefandbanditkids</a>, 
+		# <a href="http://www.etsy.com/listing/100848212/big-heart-tank-in-fluorescent-plaid-with" rel="nofollow" target="_blank">etsy.com</a> ]
+	"""
+	# return a list of links ['www.etsy.com/shop/theifandbanditkids',...] etc
+	amzn_links = []
+	for a in amzn_only:
+		amzn_links.append(a['href'])
+	print "amzn links", amzn_links
+	"""amzn_links
+	 # [u'http://www.etsy.com/shop/Gingiber', 
+	 # u'http://www.etsy.com/listing/95659221/giraffe-reusable-fabric-wall-decal-large', 
+	 # u'http://www.etsy.com/shop/Gingiber', 
+	 # u'http://www.etsy.com/listing/95659126/zebra-reusable-fabric-wall-decal-large']
+	 """
+
+def amzn_price(soup):
+	price_tag = amzn_soup.find("span",{"id": "actualPriceValue"})
+	price_w_crcy = "%s$ %s" %(str(price_tag[0].contents[3].contents[0].text), str(price_tag[0].contents[2]))
+
 
 class Pin(object):
 	def __init__ (self, link):
