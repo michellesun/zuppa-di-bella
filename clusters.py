@@ -42,7 +42,7 @@ def readfile(filename):
 
 def getusernames(filename):
 	usernames = []
-	t = open("/Users/honeysnow/Desktop/python/beautifulsoup/datafiles/toppinners.txt")
+	t = open("datafiles/toppinners.txt")
 	for line in t.readlines():
 		username = line.strip()
 		usernames.append(username)
@@ -113,7 +113,7 @@ def accessmongo(database):
 	        }
 	}
 	"""
-	usernames = getusernames("/Users/honeysnow/Desktop/python/beautifulsoup/datafiles/toppinners.txt")
+	usernames = getusernames("datafiles/toppinners.txt")
 	pinsource = getpinsource(usernames)
 	pinsource,sourcecount = getpinsource(usernames)
 	numbers = getnumbers(pinsource,sourcecount)
@@ -365,7 +365,7 @@ def kcluster(rows,distance=pearson,k=4):
 				for j in range(len(avgs)):
 					avgs[j]/=len(bestmatches[i])
 				clusters[i]=avgs
-	print bestmatches
+	# print bestmatches
 	""" evidence that it worked 
 		$ python clusters.py
 		ranges [(0, 11), (0, 23), (0, 6), (0, 7), (0, 7)]
@@ -432,14 +432,14 @@ def scaledown(data,distance=pearson, rate=0.01):
 
 	return loc
 
-def draw2d(data,labels,jpeg="mds2d.jpg"):
+def draw2d(data,labels,output="mds2d.png"):
 	img = Image.new('RGB',(2000,2000),(255,255,255))
 	draw = ImageDraw.Draw(img)
 	for i in range(len(data)):
 		x=(data[i][0]+0.5) * 1000
 		y=(data[i][1]+0.5) * 1000
 		draw.text((x,y), labels[i], (0,0,0))
-	img.save(jpeg,'JPEG')
+	img.save(output,'PNG')
 
 def connect_db():
 	connect_string = "mongodb://pinterestalgo:pinterest2012@ds035617.mongolab.com:35617/pinterest"
@@ -457,16 +457,17 @@ def main():
 	# usernames = ["mic", "jess", "andree", "lauren","laura","ashley"]
 	# pinsource = ["tumblr","goog","amazon","mongo", "printer"]
 	# numbers = [ [0,0,3,4,5],[9,2,0,0,0],[0,0,4,6,7],[11,23,4,0,0],[0,0,4,5,0],[0,0,6,7,0]]
-	# clust = hcluster(numbers)
+	# # clust = hcluster(numbers)
 	### THIS WORKS ###
 	# printclust(clust,labels=usernames,6)
 	# drawdendrogram(clust,labels=usernames,jpeg='pinclust.jpg')
 	### GOT STUCK WITH PIL library 
-	kclust= kcluster(numbers,k=3)
+	kclust = kcluster(numbers,k=100)
+	print kclust
 	# drawdendrogram(kclust,labels=usernames,jpeg='pinkclust.jpg')
 	
 	# coords = scaledown(numbers)
-	# draw2d(coords,usernames,jpeg='blogs2d.jpg')
+	# draw2d(coords,usernames, output='blogs2d.png')
 
 
 
