@@ -202,11 +202,25 @@ def main():
 		output = count_source(pin_source_list)
 		# print output
 		output_dict = {}
-		output_dict[username] = output
+		output_dict['pins'] = output
+		output_dict['username'] = username
 		print output_dict
 	# create mongodb database
 		pinners = db.pinners
 		pinners.insert(output_dict) #insert 
+
+""" code that was used to update mongodb
+for p in db.pinners.find():
+     keys = p.keys()
+     if "username" in keys:
+             continue
+     possible_names = [ k for k in keys if k != "_id" ]
+     name = possible_names[0]
+     p['pins'] = p[name]
+     p['username'] = name
+     del p[name]
+     db.pinners.update({"_id": p["_id"]}, p)
+"""
 
 # class Pin(object):
 # 	def __init__ (self, link):

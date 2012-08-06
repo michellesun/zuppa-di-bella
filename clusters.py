@@ -56,7 +56,6 @@ def getpinsource(usernames): #takes in a list of usernames and generate a SET of
 			if pin.get(username) != None: #try if username is
 				sourcecount = pin.get(username) 
 				"""sourcecount is a dictionary
-
 						sourcecount = {u'manrepeller': 2, u'style-syndrome': 1,u'poketo': 2, u'youtube': 33, u'scene7': 4, u'diamondintherough': 6, u'orangebeautiful': 1, u'xcitefun': 1, u'thebeautyinsiders': 1, u'bodenimages': 2, u'lyst':2, u'blogg': 5}
 				"""
 				break
@@ -72,10 +71,19 @@ def getpinsource(usernames): #takes in a list of usernames and generate a SET of
 		"""
 	return pinsource, sourcecount
 
+# def getsourcecount(username): # feed a username and spits out (gracefully) a dictionary of domain(key) and count 
+# 	for pin in pin_dict:
+# 		if pin.get(username) == None:
+# 			continue
+# 		else 
+# 			sourcecount = pin.get(username)
+# 			break
+# 	return sourcecount 
+
 def getnumbers(pinsource,sourcecount):
-	pin_dict = db.pinners.find()
+	pinner_list = db.pinners.find()
 	numbers = [] #create a giant list of big lists by starting with an empty one
-	for pin in pin_dict: # loop through dictionary 
+	for pinner in pinner_list: # loop through dictionary 
 		onenumber = [] # this is individual big list
 		for s in pinsource: # loop through the set
 			# create a list so that [12, 0, 1, 23, 34 etc]
@@ -113,11 +121,32 @@ def accessmongo(database):
 	        }
 	}
 	"""
-	usernames = getusernames("datafiles/toppinners.txt")
-	pinsource = getpinsource(usernames)
-	pinsource,sourcecount = getpinsource(usernames)
-	numbers = getnumbers(pinsource,sourcecount)
-	return usernames,pinsource, numbers
+	all_pinners = list(db.pinners.find())
+	pinsources = get_sources(all_pinners)
+	# usernames = getusernames("datafiles/toppinners.txt")
+	# pinsource = getpinsource(usernames)
+	# pinsource,sourcecount = getpinsource(usernames)
+	# numbers = getnumbers(pinsources,sourcecount)
+	(usernames, numbers) = get_numbers(all_pinners, pinsources)
+	return usernames, pinsources, numbers
+
+def get_sources(pinners):
+	sources = []
+	for pinner in pinners:
+		sources.extend(pinner['pins'].keys())
+	return list(set(sources))
+
+def get_numbers(pinners, pinsources):
+	numbers = []
+	usernames = []
+	for pinner in pinners:
+		onenumber = []
+		for pinsource in pinsources:
+			number = pinner['pins'].get(pinsource,0)
+			onenumber.append(number) 			
+		numbers.append(onenumber)
+		usernames.append(pinner['username'])
+	return (usernames, numbers)
 
 def pearson(v1,v2):
 	# Simple sums
@@ -337,7 +366,7 @@ def kcluster(rows,distance=pearson,k=4):
 	clusters=[[random.random( )*(ranges[i][1]-ranges[i][0])+ranges[i][0]
 		for i in range(len(rows[0]))] for j in range(k)]
 	lastmatches=None
-	for t in range(100):
+	for t in range(10):
 		print 'Iteration %d' % t
 		bestmatches=[[] for i in range(k)]
 
@@ -352,6 +381,7 @@ def kcluster(rows,distance=pearson,k=4):
 		
 		# If the results are the same as last time, this is complete
 		if bestmatches==lastmatches: 
+			print bestmatches
 			break
 		lastmatches = bestmatches
 
@@ -448,10 +478,10 @@ def connect_db():
 	c = pymongo.connection.Connection(connect_string)
 	return c['pinterest']
 
-
+p = None
 ############## test code ###################
 def main():
-	global db
+	global db, p
 	db = connect_db()
 	usernames,pinsource,numbers = accessmongo(db)
 	# usernames = ["mic", "jess", "andree", "lauren","laura","ashley"]
@@ -462,12 +492,14 @@ def main():
 	# printclust(clust,labels=usernames,6)
 	# drawdendrogram(clust,labels=usernames,jpeg='pinclust.jpg')
 	### GOT STUCK WITH PIL library 
-	kclust = kcluster(numbers,k=100)
+	p = numbers
+	# print numbers[0]
+	kclust = kcluster(numbers,k=10)
 	print kclust
 	# drawdendrogram(kclust,labels=usernames,jpeg='pinkclust.jpg')
 	
-	# coords = scaledown(numbers)
-	# draw2d(coords,usernames, output='blogs2d.png')
+	coords = scaledown(numbers)
+	draw2d(coords,usernames, output='blogs2d.png')
 
 
 
