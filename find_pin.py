@@ -5,6 +5,9 @@ from collections import Counter, defaultdict
 from operator import itemgetter
 import pymongo
 
+#toppinners3.txt should start with
+#http://www.repinly.com/popular_pinners.aspx?p=8&by=follr
+
 def find_board_list(username):
 ### find a list of boards by inserting username
 	user_url = "http://pinterest.com/%s" %(username)

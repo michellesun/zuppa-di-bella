@@ -1,3 +1,36 @@
+Resources to review
+- Singular (SVD) netflix challenge
+- Kaggle.com
+- d3js.org : omg so cool files
+Michael Bostock is visualization scientist in square
+- http://paperjs.org/tutorials/
+- protovis. custom views of data with simple marks such as bars and dots
+
+Aug 8 
+- Tasks
+1) Resize the distances between each nodes (rescale that into 100)
+2) Transform data sets into comparing domains (15,000)
+
+Aug 7
+- Tasks
+1) Transform data to feed into Force directed graph
+2) Why is iteration 0,1,2 (all before bestmatches) empty?
+Iteration 0
+line 372 [[], [], [], [], [], [], [], [], [], []]
+3) Populate the javascript file and plug that into HTML
+
+
+Aug 6
+- Tasks
+1) Finish http://www.html5canvastutorials.com
+2) Review code with Christian - done
+3) Make data appear on front end
+
+Question
+- How to overwrite files (dont want to pull deleted files on github)
+- HTML5 Canvas: what is difference between stroke and strokeStyle
+
+
 Aug 3 
 - Tasks
 1) Get the rows happen!
