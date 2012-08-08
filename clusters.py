@@ -416,7 +416,7 @@ def makenodes(bestmatches,usernames): # a function to turn clusters from numbers
 	for bestmatch in bestmatches: # [9,14,17,25]
 		for x in bestmatch: # loop through 4 times
 			node_dict = {}
-			node_dict['nodeName'] = x
+			node_dict['name'] = usernames[x]
 			node_dict['group'] = i
 			# print node_dict
 			raw_nodes.append(node_dict)
@@ -444,8 +444,8 @@ def makelinks(zipped, numbers,distance=pearson):
 			# distances['_id'] = _id
 			dist_dict['value'] = distance(number,pair[1])
 			# print distances['value']
-			dist_dict['userid'] = userid # equal source
-			dist_dict['centroid'] = i # equal target
+			dist_dict['target'] = userid # equal source
+			dist_dict['source'] = i # equal target
 			raw_links.append(dist_dict)
 			# print "each distance", dist_dict	
 			# print links		
@@ -462,16 +462,17 @@ def makelinks(zipped, numbers,distance=pearson):
 	return links
 
 def writejs(nodes,links):
-	fo = open("pinners.js", "w")
-	fo.write( "var miserables = {\n")
-	fo.write( "nodes:[ \n")
+	fo = open("pinners.json", "w")
+	# fo.write( "var miserables = {\n")
+	fo.write( "{\"nodes\": \n")
 	fo.write(nodes)
 
-	fo.write( ",\n  links:[ \n")
+	fo.write( ",\n  \"links\": \n")
 	fo.write(links)
+	fo.write("}")
 
 	fo.close()
-
+ 
 def scaledown(data,distance=pearson, rate=0.01):
 # view data in multidimensional scaling (vs. dendrogram's two dimension flowchart)
 	n = len(data)

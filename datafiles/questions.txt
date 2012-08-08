@@ -9,7 +9,14 @@ Michael Bostock is visualization scientist in square
 Aug 8 
 - Tasks
 1) Resize the distances between each nodes (rescale that into 100)
+yes!!
+3) Add labels
+3a) Change name = digit, into name = username
 2) Transform data sets into comparing domains (15,000)
+
+3) Rewrite so that writejs is on flaskr
+4) Add click to add labels
+
 
 Aug 7
 - Tasks
