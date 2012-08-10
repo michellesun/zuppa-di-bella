@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <title>Beautiful Soup</title>
+  <head>
+      
+      <link rel="/static/" type="text/css" href="bootstrap.less">
+      <link href="/static/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+      <script src="/static/jquery-1.7.2.min.js" type="text/javascript"></script>    
+      <script src="/static/less-1.3.0.min.js" type="text/javascript"></script> 
+      <script src="/static/app.js" type="text/javascript"></script> 
+
+  </head>
+     <script type="text/template" id="person-template">
+          <div class="thumbnail">
+            <img src="<%= pictureUrl %>" alt="">
+            <h5><%= firstName %> <%= lastName %></h5>
+            <p><%= headline %></p>
+          </div>
+      </script>
+
+      
+
+  <body>
+     <div class="container">
+      <div align="center">
+        <div class="hero-unit">
+          <div align="left">
+            <h1>Plungr</h1>
+            <p>
+
+            </p>
+            <p><a class="btn btn-primary btn-large">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+
+      <form action="/new" method="post"><p>
+        <div class="row">
+          <div class="span4">
+            <div class="well" align="center" style="height:120px">
+            <h4>App users redirected here:</h3><br>
+            <input name="iosURL" type="text" class="input-large" placeholder="iOS App URL" value="{{ iosURL }}"><p>
+            <input name="androidURL" type="text" class="input-large" placeholder="Android URL" value="{{ androidURL }}"><p>
+            </div>
+          </div>
+
+          <div class="span4">
+            <div class="well" align="center" style="height:120px">
+            <h4>Mobile users without App redirected here: </h3><br>
+            <input name="mobileURL" type="text" class="input-large" placeholder="Mobile Web URL" value="{{ mobileURL }}"><p>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well" align="center" style="height:120px">
+            <h4>Non-mobile users redirected here: </h3><br>
+            <input name="webURL" type="text" class="input-large" placeholder="Web URL" value="{{ webURL }}"><p>
+            </div>
+          </div>
+
+        </div>
+        <div class="well">
+          <div class="row">
+            <div class="span5">
+                <h4>Your Email to send yourself the generated link:</h4><br>
+                <input name="email" type="text" class="input-large" placeholder="Email" value="{{ email }}"> 
+            </div>
+            <div class="span5">
+              <br><br><button type="submit" class="btn btn-primary btn-large">Generate Link</button><p>
+            </div>
+          </div>
+        </div>
+      </form>
+      
+
+      {% if hashURL %}
+        <h3>DONE! </h3><br>
+
+        Now, <a href="http://plungr.appspot.com/({{ hashURL }})">http://plungr.appspot.com/({{ hashURL }})</a> will redirect to <br><br>
+        <a href="{{ iosURL }}">{{ iosURL }}</a> if the user is using an iPhone and has your iOS App installed or <br>
+        <a href="{{ androidURL }}">{{ androidURL }}</a> if the user is using an Android phone and has your App installed or <br><br>
+        <a href="{{ mobileURL }}">{{ mobileURL }}</a> if the user is using a mobile device but does not have your App installed or <br><br>
+        <a href="{{ webURL }}">{{ webURL }}</a> otherwise<p>
+        <a href="mailto:{{ email }}?Subject=Plungr Link&Body=Wow!%20%0A%0A%20http://plungr.appspot.com/({{ hashURL }})%20now%20redirects%20to%20{{ appURL }}%20if%20the%20user%20is%20using%20an%20iPhone%20and%20has%20your%20iOS%20App%20installed%20or%20%0A%0A%20{{ webURL }}%20otherwise">
+          Send Link to me via email</a>
+      {% endif %}
+    </div>
+  </body>
+</html>

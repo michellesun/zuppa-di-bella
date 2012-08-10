@@ -1,0 +1,50 @@
+{
+    "query": {
+        "brandID": "1",
+        "brand": "Gucchi",
+        "logo": "xxx.jpg",
+        "description": "This is the brand you searched for",
+		"images": {
+            "1": "xxxx.jpg",
+            "2": "xxxx.jpg",
+            "3": "xxxx.jpg",
+            "4": "xxxx.jpg",
+            "5": "xxxx.jpg"
+            }, 
+        },
+    "results": {
+    	"1": {
+	    	"brandID": "2",
+	    	"brand": "Victoria's Secrets",
+	    	"description": "Pink power!",
+	    	"images": { 
+				"1": "xxxx.jpg",
+	            "2": "xxxx.jpg",
+	            "3": "xxxx.jpg",
+	            "4": "xxxx.jpg",
+	            "5": "xxxx.jpg"
+	    	},
+    	"2": {
+    	"brandID": "3",
+    	"brand": "Chanel",
+    	"description": "Gabrielle \"Coco\" Bonheur Chanel was a French fashion designer and founder of the Chanel brand. She was the only fashion designer to be named on Time 100: The Most Important People of the Century",
+    	"images": { 
+			"1": "xxxx.jpg",
+            "2": "xxxx.jpg",
+            "3": "xxxx.jpg",
+            "4": "xxxx.jpg",
+            "5": "xxxx.jpg"
+    	},
+    	"3": {
+    	"brandID": "4",
+    	"brand": "Prada",
+    	"description": "Devil Wears it",
+    	"images": { 
+			"1": "xxxx.jpg",
+            "2": "xxxx.jpg",
+            "3": "xxxx.jpg",
+            "4": "xxxx.jpg",
+            "5": "xxxx.jpg"
+    	},
+
+    }
