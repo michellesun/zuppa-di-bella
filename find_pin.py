@@ -160,7 +160,7 @@ def main():
 	global db
 	db = connect_db()
 	# db = db['pinterest'] #get collection named pinterest
-	t = open("/Users/honeysnow/Desktop/python/beautifulsoup/datafiles/toppinners.txt")
+	t = open("/Users/honeysnow/Desktop/python/beautifulsoup/datafiles/toppinners2.txt")
 	for line in t.readlines():
 		username = line.strip()
 		print username
@@ -213,16 +213,16 @@ def main():
 		pinners.insert(output_dict) #insert 
 
 """ code that was used to update mongodb
-for p in db.pinners.find():
-     keys = p.keys()
-     if "username" in keys:
-             continue
-     possible_names = [ k for k in keys if k != "_id" ]
-     name = possible_names[0]
-     p['pins'] = p[name]
-     p['username'] = name
-     del p[name]
-     db.pinners.update({"_id": p["_id"]}, p)
+	for p in db.pinners.find():
+	     keys = p.keys()
+	     if "username" in keys:
+	             continue
+	     possible_names = [ k for k in keys if k != "_id" ]
+	     name = possible_names[0]
+	     p['pins'] = p[name]
+	     p['username'] = name
+	     del p[name]
+	     db.pinners.update({"_id": p["_id"]}, p)
 """
 
 # class Pin(object):
