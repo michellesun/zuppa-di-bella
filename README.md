@@ -14,7 +14,7 @@ Note: dont really need re-use it unless want to inject more data
 
 - clusters.py: a program that takes in the database and create k-cluster files
 
-- webapp.py: link it with front end. not active at the moment 
+- flaskr.py: link it with front end. not active at the moment 
 
 
-last updated: Aug 13, 2012
+last updated: Sep 21, 2012
